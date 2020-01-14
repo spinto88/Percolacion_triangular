@@ -74,27 +74,20 @@ int evolution_triangle_percolation(axl_network *mysys)
 
 			if(active_condition_tp(mysys, i, j) == 1)
 			{
-
 				for(l = 0; l < mysys->nagents; l++)
 				{
 					if((l != i) && (l != j))
 					{
-						if((mysys->corr[i][l] == 0) && (mysys->corr[j][l] == 0))
-							continue;
-						else
+						if(mysys->corr[i][l] != mysys->corr[j][l])
 						{
-							if(mysys->corr[i][l] != mysys->corr[j][l])
-							{
-								mysys->corr[i][l] = 1;
-								mysys->corr[j][l] = 1;
+							mysys->corr[i][l] = 1;
+							mysys->corr[j][l] = 1;
 
-								mysys->corr[l][i] = mysys->corr[i][l];
-								mysys->corr[l][j] = mysys->corr[j][l];
+							mysys->corr[l][i] = mysys->corr[i][l];
+							mysys->corr[l][j] = mysys->corr[j][l];
 
-								changes += 1;
-							}
-						}
-				
+							changes += 1;
+						}		
 					}
 						
 				}

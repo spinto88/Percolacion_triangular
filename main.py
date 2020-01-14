@@ -2,7 +2,7 @@ from axelrod_py import *
 
 rand.seed(123452)
 
-for N in [100, 225, 400]:
+for N in [64, 128, 256, 512, 768, 1024, 2048]:
 
   M = 0.5*N*(N-1)
     
@@ -14,9 +14,9 @@ for N in [100, 225, 400]:
 
             mysys = Axl_network(n = N, non_zero_links = 100, topology = topology, degree = degree)
 
-            for i in range(100):
+            for i in range(1000):
 
-                for nz in [int(m) for m in np.logspace(0, np.log10(M), 51)]:
+                for nz in [int(m) for m in np.logspace(0, np.log10(M), 61)]:
                     mysys.init_links(nz)
                     mysys.evolution()
 
@@ -24,14 +24,16 @@ for N in [100, 225, 400]:
 
     else:
 
-        mysys = Axl_network(n = N, non_zero_links = 100, topology = topology)
+        if N in [64, 256, 1024]:
 
-        for i in range(100):
+            mysys = Axl_network(n = N, non_zero_links = 100, topology = topology)
 
-            for nz in [int(m) for m in np.logspace(0, np.log10(M), 51)]:
-                mysys.init_links(nz)
-                mysys.evolution()
+            for i in range(1000):
 
-                mysys.save_fragments_distribution("Lattice_N{}.dat".format(N))
+                for nz in [int(m) for m in np.logspace(0, np.log10(M), 61)]:
+                    mysys.init_links(nz)
+                    mysys.evolution()
+
+                    mysys.save_fragments_distribution("Lattice_N{}.dat".format(N))
 
 

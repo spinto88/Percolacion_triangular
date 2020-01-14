@@ -72,7 +72,7 @@ p = lambda f,q: 1.00 - (1.00 - 1.00/q)**f
 
 for F in [10]:
 
-  data = biggest_fragment('RGDegree2_N100.dat'.format(degree, F))
+  data = biggest_fragment('Lattice_N64.dat'.format(degree, F))
 
   plt.plot([b[0] for b in data], [np.mean(b[1]) for b in data], '-', linewidth = 3, alpha = 0.75, label = '$F = {}$'.format(F))
 
